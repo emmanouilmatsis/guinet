@@ -1,0 +1,7 @@
+Hello {username}.
+
+Your password is: {password}.
+
+Thank you,
+
+GUINET
