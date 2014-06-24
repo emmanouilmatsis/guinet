@@ -12,7 +12,7 @@ abstract class View
 
   public function output()
   {
-		$this->page = new Template(FP_ROOT . 'include/templates/structure.page.php');
+		$this->page = new Template(FP_ROOT . '/include/templates/structure.page.php');
 		$this->page->header = $this->header();
 		$this->page->content = $this->content();
 		$this->page->footer = $this->footer();
@@ -36,9 +36,9 @@ class IndexView extends View
 
 	protected function header()
 	{
-		$header = new Template(FP_ROOT . 'include/templates/structure.header.php');
-		$header->href1 = URL_ROOT . 'index.php?route=signup';
-		$header->href2 = URL_ROOT . 'index.php?route=signin';
+		$header = new Template(FP_ROOT . '/include/templates/structure.header.php');
+		$header->href1 = URL_ROOT . '/index.php?route=signup';
+		$header->href2 = URL_ROOT . '/index.php?route=signin';
 		$header->title1 = 'SIGNUP';
 		$header->title2 = 'SIGNIN';
 		return $header->render();
@@ -46,14 +46,14 @@ class IndexView extends View
 
 	protected function content()
 	{
-		$content = new Template(FP_ROOT . 'include/templates/structure.content.php');
-		$content->content = file_get_contents(FP_ROOT . 'include/templates/message.index.php');
+		$content = new Template(FP_ROOT . '/include/templates/structure.content.php');
+		$content->content = file_get_contents(FP_ROOT . '/include/templates/message.index.php');
 		return $content->render();
 	}
 
 	protected function footer()
 	{
-		$footer = new Template(FP_ROOT . 'include/templates/structure.footer.php');
+		$footer = new Template(FP_ROOT . '/include/templates/structure.footer.php');
 		return $footer->render();
 	}
 }
@@ -68,9 +68,9 @@ class HomeView extends View
 
 	protected function header()
 	{
-		$header = new Template(FP_ROOT . 'include/templates/structure.header.php');
-		$header->href1 = URL_ROOT . 'index.php?route=settings';
-		$header->href2 = URL_ROOT . 'index.php?route=home&action=signout';
+		$header = new Template(FP_ROOT . '/include/templates/structure.header.php');
+		$header->href1 = URL_ROOT . '/index.php?route=settings';
+		$header->href2 = URL_ROOT . '/index.php?route=home&action=signout';
 		$header->title1 = 'SETTINGS';
 		$header->title2 = 'SIGNOUT';
 		return $header->render();
@@ -78,17 +78,17 @@ class HomeView extends View
 
 	protected function content()
 	{
-    $preloader = new Template(FP_ROOT . 'include/templates/message.home.php'); // FIXME: templates
-    $preloader->filename = URL_ROOT . 'public/image/preloader.png';
+    $preloader = new Template(FP_ROOT . '/include/templates/message.home.php'); // FIXME: templates
+    $preloader->filename = URL_ROOT . '/public/image/preloader.png';
 
-		$content = new Template(FP_ROOT . 'include/templates/structure.content.php');
+		$content = new Template(FP_ROOT . '/include/templates/structure.content.php');
 		$content->content = $preloader->render();
 		return $content->render();
 	}
 
 	protected function footer()
 	{
-		$footer = new Template(FP_ROOT . 'include/templates/structure.footer.php');
+		$footer = new Template(FP_ROOT . '/include/templates/structure.footer.php');
 		return $footer->render();
 	}
 }
@@ -103,9 +103,9 @@ class SignupView extends View
 
 	protected function header()
 	{
-		$header = new Template(FP_ROOT . 'include/templates/structure.header.php');
+		$header = new Template(FP_ROOT . '/include/templates/structure.header.php');
 		$header->href1 = '#';
-		$header->href2 = URL_ROOT . 'index.php?route=index';
+		$header->href2 = URL_ROOT . '/index.php?route=index';
 		$header->title1 = '';
 		$header->title2 = 'BACK';
 		return $header->render();
@@ -113,17 +113,17 @@ class SignupView extends View
 
 	protected function content()
 	{
-    $form = new Template(FP_ROOT . 'include/templates/form.signup.php');
-    $form->signup = URL_ROOT . 'index.php?route=signup&action=signup';
+    $form = new Template(FP_ROOT . '/include/templates/form.signup.php');
+    $form->signup = URL_ROOT . '/index.php?route=signup&action=signup';
 
-		$content = new Template(FP_ROOT . 'include/templates/structure.content.php');
+		$content = new Template(FP_ROOT . '/include/templates/structure.content.php');
 		$content->content = $form->render();
 		return $content->render();
 	}
 
 	protected function footer()
 	{
-		$footer = new Template(FP_ROOT . 'include/templates/structure.footer.php');
+		$footer = new Template(FP_ROOT . '/include/templates/structure.footer.php');
 		return $footer->render();
 	}
 }
@@ -138,9 +138,9 @@ class SigninView extends View
 
 	protected function header()
 	{
-		$header = new Template(FP_ROOT . 'include/templates/structure.header.php');
+		$header = new Template(FP_ROOT . '/include/templates/structure.header.php');
 		$header->href1 = '#';
-		$header->href2 = URL_ROOT . 'index.php?route=index';
+		$header->href2 = URL_ROOT . '/index.php?route=index';
 		$header->title1 = '';
 		$header->title2 = 'BACK';
 		return $header->render();
@@ -148,18 +148,18 @@ class SigninView extends View
 
 	protected function content()
 	{
-    $form = new Template(FP_ROOT . 'include/templates/form.signin.php');
-    $form->signin = URL_ROOT . 'index.php?route=signin&action=signin';
-    $form->send = URL_ROOT . 'index.php?route=signin&action=send';
+    $form = new Template(FP_ROOT . '/include/templates/form.signin.php');
+    $form->signin = URL_ROOT . '/index.php?route=signin&action=signin';
+    $form->send = URL_ROOT . '/index.php?route=signin&action=send';
 
-		$content = new Template(FP_ROOT . 'include/templates/structure.content.php');
+		$content = new Template(FP_ROOT . '/include/templates/structure.content.php');
 		$content->content = $form->render();
 		return $content->render();
 	}
 
 	protected function footer()
 	{
-		$footer = new Template(FP_ROOT . 'include/templates/structure.footer.php');
+		$footer = new Template(FP_ROOT . '/include/templates/structure.footer.php');
 		return $footer->render();
 	}
 }
@@ -174,9 +174,9 @@ class SettingsView extends View
 
 	protected function header()
 	{
-		$header = new Template(FP_ROOT . 'include/templates/structure.header.php');
+		$header = new Template(FP_ROOT . '/include/templates/structure.header.php');
 		$header->href1 = '#';
-		$header->href2 = URL_ROOT . 'index.php?route=home';
+		$header->href2 = URL_ROOT . '/index.php?route=home';
 		$header->title1 = '';
 		$header->title2 = 'BACK';
 		return $header->render();
@@ -184,18 +184,18 @@ class SettingsView extends View
 
 	protected function content()
 	{
-    $form = new Template(FP_ROOT . 'include/templates/form.settings.php');
-    $form->username = URL_ROOT . 'index.php?route=settings&action=username';
-    $form->password = URL_ROOT . 'index.php?route=settings&action=password';
+    $form = new Template(FP_ROOT . '/include/templates/form.settings.php');
+    $form->username = URL_ROOT . '/index.php?route=settings&action=username';
+    $form->password = URL_ROOT . '/index.php?route=settings&action=password';
 
-		$content = new Template(FP_ROOT . 'include/templates/structure.content.php');
+		$content = new Template(FP_ROOT . '/include/templates/structure.content.php');
 		$content->content = $form->render();
 		return $content->render();
 	}
 
 	protected function footer()
 	{
-		$footer = new Template(FP_ROOT . 'include/templates/structure.footer.php');
+		$footer = new Template(FP_ROOT . '/include/templates/structure.footer.php');
 		return $footer->render();
 	}
 }

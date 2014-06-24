@@ -13,15 +13,14 @@
 		<link rel="stylesheet" href="/guinet/public/style/reset.css">
 		<link rel="stylesheet" href="/guinet/public/style/style.css">
 
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <!---
-    <script src="/guinet/public/script/jquery-1.10.2.js"></script>
-    <script src="/guinet/public/script/jquery-ui-1.10.4.min.js"></script>
-    -->
-
 		<script src="/guinet/public/script/jquery.jeditable.mini.js"></script>
 		<script src="/guinet/public/script/script.js"></script>
+
+		<script src="/guinet/public/script/background.js"></script>
 
 		<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

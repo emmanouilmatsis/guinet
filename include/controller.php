@@ -37,7 +37,7 @@ abstract class Controller
 	public function redirect($route, $action=null, $param=null)
 	{
     $url = URL_ROOT;
-    $url .= 'index.php';
+    $url .= '/index.php';
     $url .= '?route=' . $route;
     $url .= is_null($action) ? '' : '&action=' . $action;
     $url .= is_null($param) ? '' : '&param=' . $param;

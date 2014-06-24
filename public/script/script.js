@@ -1,6 +1,7 @@
 // GUINET Module
 GUINET = (function() {
 
+  // GUINET Module Initialization
   var init = function() {
     switch(window.location.search) {
       case '?route=index': GUINET.index.init(); break;
