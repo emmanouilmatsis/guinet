@@ -1,8 +1,11 @@
 // GUINET Module
 GUINET = (function() {
 
-  // GUINET Module Initialization
-  var init = function() {
+	var include = function() {
+		$.getScript('/guinet/public/script/background.js');
+	};
+
+	var route = function() {
     switch(window.location.search) {
       case '?route=index': GUINET.index.init(); break;
       case '?route=home': GUINET.home.init(); break;
@@ -10,6 +13,12 @@ GUINET = (function() {
       case '?route=signin': GUINET.signin.init(); break;
       case '?route=settings': GUINET.settings.init(); break;
     }
+	};
+
+  // GUINET Module Initialization
+  var init = function() {
+		include();
+		route();
   };
 
   return {
