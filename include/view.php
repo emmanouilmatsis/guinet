@@ -1,6 +1,7 @@
 <?php
 
 
+// View
 abstract class View
 {
 	protected $model;
@@ -10,6 +11,7 @@ abstract class View
 		$this->model = $model;
 	}
 
+  // Setup and output page template
   public function output()
   {
 		$this->page = new Template(FP_ROOT . '/include/templates/structure.page.php');
@@ -19,14 +21,18 @@ abstract class View
 		return $this->page->render();
   }
 
+  // Setup and output header template
   abstract protected function header();
 
+  // Setup and output content template
   abstract protected function content();
 
+  // Setup and output footer template
   abstract protected function footer();
 }
 
 
+// Index View
 class IndexView extends View
 {
 	public function __construct(Model $model)
@@ -59,6 +65,7 @@ class IndexView extends View
 }
 
 
+// Home View
 class HomeView extends View
 {
 	public function __construct(Model $model)
@@ -94,6 +101,7 @@ class HomeView extends View
 }
 
 
+// Signup View
 class SignupView extends View
 {
 	public function __construct(Model $model)
@@ -129,6 +137,7 @@ class SignupView extends View
 }
 
 
+// Signin View
 class SigninView extends View
 {
 	public function __construct(Model $model)
@@ -165,6 +174,7 @@ class SigninView extends View
 }
 
 
+// Settings View
 class SettingsView extends View
 {
 	public function __construct(Model $model)
@@ -201,6 +211,7 @@ class SettingsView extends View
 }
 
 
+// Data View
 class DataView extends View
 {
 	public function __construct(Model $model)

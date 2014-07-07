@@ -1,10 +1,12 @@
 // GUINET Module
 GUINET = (function() {
 
-	var include = function() {
-		$.getScript('/guinet/public/script/background.js');
+  // Include external script
+	var include = function(filename) {
+		$.getScript(filename);
 	};
 
+  // Initialize submodule from route
 	var route = function() {
     switch(window.location.search) {
       case '?route=index': GUINET.index.init(); break;
@@ -17,7 +19,7 @@ GUINET = (function() {
 
   // GUINET Module Initialization
   var init = function() {
-		include();
+		include('/guinet/public/script/background.js');
 		route();
   };
 
@@ -58,15 +60,19 @@ GUINET.home = (function() {
         return new Note(parameters.widgetManager, parameters.html);
         break;
       case 'browser':
+        // TODO
         //return Browser(parameters.widgetManager, parameters.html);
         break;
       case 'texteditor':
+        // TODO
         //return TextEditor(parameters.widgetManager, parameters.html);
         break;
       case 'imageviewer':
+        // TODO
         //return ImageViewer(parameters.widgetManager, parameters.html);
         break;
       case 'chat':
+        // TODO
         //return Chat(parameters.widgetManager, parameters.html);
         break;
     }
@@ -80,26 +86,31 @@ GUINET.home = (function() {
     this.widgets = [];
   }
 
+  // Add widget to widget array
   WidgetManager.prototype.add = function(widget) {
     return this.widgets.push(widget);
   }
 
+  // Remove widget to widget array
   WidgetManager.prototype.remove = function(widget) {
     this.widgets.splice(this.widgets.indexOf(widget), 1);
   }
 
+  // Get widget from widget array at index
   WidgetManager.prototype.get = function(index) {
     if(index > -1 && index < this.widgets.length) {
       return this.widgets[index];
     }
   }
 
+  // Set widget from widget array at index
   WidgetManager.prototype.set = function(index, widget) {
     if(index > -1 && index < this.widgets.length) {
       this.widgets[index] = widget;
     }
   }
 
+  // Save widget list to server
   WidgetManager.prototype.save = function() {
     var data = [];
     for(var i=0; i<this.widgets.length; i++)
@@ -107,6 +118,7 @@ GUINET.home = (function() {
     this.ajax.set(data, null);
   }
 
+  // Load widget list from server
   WidgetManager.prototype.load = function() {
     this.ajax.get(null, function(data) {
       $('.message').fadeOut('slow', function() {
@@ -152,6 +164,7 @@ GUINET.home = (function() {
     this.render((html == undefined) ? (this.widgetManager.save).bind(this.widgetManager) : undefined);
   }
 
+  // Setup widget interactions
   Bookmark.prototype.setup = function() {
     // Make widget draggable
     this.$object
@@ -296,6 +309,7 @@ GUINET.home = (function() {
       }.bind(this));
   }
 
+  // Render widget to screen
   Bookmark.prototype.render = function(callback) {
 
     this.$object.css({'position': 'absolute'}); // FIXME
@@ -303,6 +317,7 @@ GUINET.home = (function() {
 
   };
 
+  // Get widget JSON
   Bookmark.prototype.json = function() {
     var json = [
       {
@@ -331,6 +346,7 @@ GUINET.home = (function() {
     this.render((html == undefined) ? this.widgetManager.save.bind(this) : undefined);
   }
 
+  // Setup widget interactions
   Note.prototype.setup = function() {
     // Make widget draggable
     this.$object
@@ -355,11 +371,13 @@ GUINET.home = (function() {
       }.bind(this));
   }
 
+  // Render widget on screen
   Note.prototype.render = function(callback) {
     this.$object.css({'position':'absolute'}); // FIXME
     this.$object.appendTo('#content').hide().fadeIn('slow', callback);
   }
 
+  // Get widget JSON
   Note.prototype.json = function() {
     var json = [
       {
@@ -381,6 +399,7 @@ GUINET.home = (function() {
     }.bind(this));
   }
 
+  // Switch action from key
   Control.prototype.run = function(key) {
     switch(key) {
       case 102:
@@ -392,10 +411,12 @@ GUINET.home = (function() {
     }
   };
 
+  // Toggle interface
   Control.prototype.fullscreen = function() {
     $('body').children().not('iframe').fadeToggle('slow');
   };
 
+  // Toggle iframe
   Control.prototype.iframe = function() {
     $('iframe').fadeToggle('slow');
   };
@@ -406,6 +427,7 @@ GUINET.home = (function() {
     this.url = 'http://localhost/guinet/index.php';
   }
 
+  // Get JSON from server
   AJAX.prototype.get = function(data, callback) {
     $.ajax({
       type: 'GET',
@@ -418,6 +440,7 @@ GUINET.home = (function() {
     });
   }
 
+  // Set JSON to server
   AJAX.prototype.set = function(data, callback) {
     $.ajax({
       type: 'POST',

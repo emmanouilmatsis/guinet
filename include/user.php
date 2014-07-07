@@ -6,6 +6,7 @@ class User
 
   // DATABASE GATEWAY PROPERTIES
 
+  // SQL table
   private $record = array(
     'id'=>null,
     'username'=>null,
@@ -19,6 +20,7 @@ class User
 
   // DATABASE GATEWAY METHODS
 
+  // Insert new user
   public function insert($connection)
   {
     try
@@ -45,6 +47,7 @@ class User
     }
   }
 
+  // Update existing user
   public function update($connection)
   {
     try
@@ -71,6 +74,7 @@ class User
     }
   }
 
+  // Delete existing user
   public function delete($connection)
   {
     try
@@ -95,6 +99,7 @@ class User
     }
   }
 
+  // Find user from id else return null
   public static function find($connection, $id)
   {
     try
@@ -127,6 +132,7 @@ class User
     }
   }
 
+  // Find all users else return empty array
   public static function findAll($connection)
   {
     try
@@ -185,11 +191,12 @@ class User
     // Test if username exist in the connection
     foreach (User::findAll($connection) as $user)
     {
+      // If username exists return false
       if ($user->username == $username)
         return False;
     }
 
-    // Insert new record
+    // Insert new user
     $this->record['username'] = $username;
     $this->record['password'] = $password;
 
@@ -287,11 +294,13 @@ class User
 
     foreach (json_decode($data) as $key => $value)
     {
+      // Instantiate new Widget Active Record
       $widget = new Widget();
       $widget->user_id = $this->record['id'];
       $widget->type = $value->type;
       $widget->html = $value->html;
 
+      // Insert new widget
       $widget->insert($connection);
 
       $widgets[] = $widget;

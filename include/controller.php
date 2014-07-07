@@ -1,6 +1,7 @@
 <?php
 
 
+// Front Controller
 class FrontController
 {
 	private $model;
@@ -9,8 +10,10 @@ class FrontController
 
 	public function __construct($router, $route, $action)
 	{
+    // Setup router
 		$router->setRoute($route);
 
+    // Initialize model-view-controller from route
 		$this->model = new $router->model();
 		$this->view = new $router->view($this->model);
 		$this->controller = new $router->controller($this->model);
@@ -25,6 +28,7 @@ class FrontController
 }
 
 
+// Controller
 abstract class Controller
 {
 	protected $model;
@@ -34,6 +38,7 @@ abstract class Controller
 		$this->model = $model;
 	}
 
+  // Construct and redirect to URL
 	public function redirect($route, $action=null, $param=null)
 	{
     $url = URL_ROOT;
@@ -48,24 +53,28 @@ abstract class Controller
 }
 
 
+// Index Conrtoller
 class IndexController extends Controller
 {
 	public function __construct(Model $model)
 	{
 		parent::__construct($model);
 
+    // Redirect to home if user is signedin
 		if ($this->model->state())
 			$this->redirect("home");
 	}
 }
 
 
+// Home Controller
 class HomeController extends Controller
 {
 	public function __construct(Model $model)
 	{
 		parent::__construct($model);
 
+    // Redirect to index if user is signedout
 		if (!$this->model->state())
 			$this->redirect("index");
 	}
@@ -78,30 +87,35 @@ class HomeController extends Controller
 }
 
 
+// Signup Controller
 class SignupController extends Controller
 {
 	public function __construct(Model $model)
 	{
 		parent::__construct($model);
 
+    // Redirect to home if user is signedin
 		if ($this->model->state())
 			$this->redirect("home");
 	}
 
   public function signup()
   {
+    // Redirect to home if user is signedup
     if ($this->model->signup())
       $this->redirect("home");
   }
 }
 
 
+// Signin Controller
 class SigninController extends Controller
 {
 	public function __construct(Model $model)
 	{
 		parent::__construct($model);
 
+    // Redirect to home if user is signedin
 		if ($this->model->state())
 			$this->redirect("home");
 	}
@@ -120,12 +134,14 @@ class SigninController extends Controller
 }
 
 
+// Settings Controller
 class SettingsController extends Controller
 {
 	public function __construct(Model $model)
 	{
 		parent::__construct($model);
 
+    // Redirect to index if user is signedout
 		if (!$this->model->state())
 			$this->redirect("index");
 	}
@@ -142,6 +158,7 @@ class SettingsController extends Controller
 }
 
 
+// Data Controller
 class DataController extends Controller
 {
   public function __construct(Model $model)
@@ -149,12 +166,14 @@ class DataController extends Controller
     parent::__construct($model);
   }
 
+  // Get data to client
   public function get()
   {
 		if ($this->model->state())
       $this->model->get();
   }
 
+  // Set data from client
   public function set()
   {
 		if ($this->model->state())

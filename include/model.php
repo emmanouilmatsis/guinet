@@ -1,12 +1,14 @@
 <?php
 
 
+// Model
 abstract class Model
 {
 	public function __construct()
 	{
 	}
 
+  // Return if user is signedin or signedout
   public function state()
   {
     return isset($_SESSION['id']);
@@ -14,6 +16,7 @@ abstract class Model
 }
 
 
+// Index Model
 class IndexModel extends Model
 {
 	public function __construct()
@@ -23,6 +26,7 @@ class IndexModel extends Model
 }
 
 
+// Home Model
 class HomeModel extends Model
 {
 	public function __construct()
@@ -37,6 +41,7 @@ class HomeModel extends Model
 }
 
 
+// Signup Model
 class SignupModel extends Model
 {
 	public function __construct()
@@ -46,8 +51,10 @@ class SignupModel extends Model
 
 	public function signup()
 	{
+    // Instantiate new User Active Record
     $user = new User();
 
+    // If user can succesfully signup then signin
     if ($user->signup(Database::connection(), $_POST['username'], $_POST['password']))
     {
       $_SESSION['id'] = $user->id;
@@ -59,6 +66,7 @@ class SignupModel extends Model
 }
 
 
+// Signin Model
 class SigninModel extends Model
 {
 	public function __construct()
@@ -68,8 +76,10 @@ class SigninModel extends Model
 
 	public function signin()
 	{
+    // Instantiate new User Active Record
     $user = new User();
 
+    // If user can succesfully signin then signin
     if ($user->signin(Database::connection(), $_POST['username'], $_POST['password']))
     {
       $_SESSION['id'] = $user->id;
@@ -81,13 +91,16 @@ class SigninModel extends Model
 
 	public function send()
 	{
+    // Instantiate new User Active Record
     $user = new User();
 
+    // Send mail to user with password if username exists
     return $user->sendEmail(Database::connection(), $_POST['username']);
   }
 }
 
 
+// Settings Model
 class SettingsModel extends Model
 {
 	public function __construct()
@@ -97,20 +110,25 @@ class SettingsModel extends Model
 
   public function updateUsername()
   {
+    // Instantiate new User Active Record from id
     $user = User::find(Database::connection(), $_SESSION['id']);
 
+    // Update Username
     return $user->updateUsername(Database::connection(), $_POST['username']);
   }
 
   public function updatePassword()
   {
+    // Instantiate new User Active Record from id
     $user = User::find(Database::connection(), $_SESSION['id']);
 
+    // Update password
     return $user->updatePassword(Database::connection(), $_POST['password']);
   }
 }
 
 
+// Data Model
 class DataModel extends Model
 {
   public $data;
@@ -122,10 +140,10 @@ class DataModel extends Model
 
   public function get()
   {
-    // Find user
+    // Instantiate new User Active Record from id
     $user = User::find(Database::connection(), $_SESSION['id']);
 
-    // Export trees
+    // Export widgets
     $this->data = $user->export(Database::connection());
   }
 
@@ -134,10 +152,10 @@ class DataModel extends Model
     // Get payload
     $this->data = file_get_contents('php://input');
 
-    // Find user
+    // Instantiate new User Active Record from id
     $user = User::find(Database::connection(), $_SESSION['id']);
 
-    // Import trees
+    // Import widgets
     $user->import(Database::connection(), $this->data);
   }
 }

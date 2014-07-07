@@ -6,6 +6,7 @@ class Widget
 
   // DATABASE GATEWAY PROPERTIES
 
+  // SQL table
   private $record = array(
     'id'=>null,
     'user_id'=>null,
@@ -19,6 +20,7 @@ class Widget
 
   // DATABASE GATEWAY METHODS
 
+  // Insert new widget
   public function insert($connection)
   {
     try
@@ -46,6 +48,7 @@ class Widget
     }
   }
 
+  // Update existing widget
   public function update($connection)
   {
     try
@@ -73,6 +76,7 @@ class Widget
     }
   }
 
+  // Delete existing widget
   public function delete($connection)
   {
     try
@@ -97,6 +101,7 @@ class Widget
     }
   }
 
+  // Find existing widget from id else return null
   public static function find($connection, $id)
   {
     try
@@ -112,6 +117,7 @@ class Widget
 
       $widget = null;
 
+      // Populate record
       if ($record = $stmt->fetch(PDO::FETCH_ASSOC))
       {
         $widget = new User();
@@ -129,6 +135,7 @@ class Widget
     }
   }
 
+  // Find all widgets else return empty array
   public static function findAll($connection)
   {
     try
@@ -141,6 +148,7 @@ class Widget
 
       $widgets = array();
 
+      // Populate record
       while ($record = $stmt->fetch(PDO::FETCH_ASSOC))
       {
         $widget = new Widget();
@@ -160,6 +168,7 @@ class Widget
     }
   }
 
+  // Find all widgets from user id else return emtpy array
   public static function findAllFromUser($connection, $user_id)
   {
     try
@@ -193,12 +202,14 @@ class Widget
     }
   }
 
+  // Set record at key
   public function __set($key, $value)
   {
     if (array_key_exists($key, $this->record))
       $this->record[$key] = $value;
   }
 
+  // Get record at key
   public function __get($key)
   {
     if (array_key_exists($key, $this->record))
