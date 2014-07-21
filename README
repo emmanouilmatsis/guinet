@@ -7,3 +7,5 @@ For 30 years WIMP (windows, icons, menus, pointer) has been the prevalent paradi
  I believe though that the Browser's GUI evolved to what it is right now but it has limitations since the shift to The Cloud could not be completely anticipated.
 
 Guinet is an attempt to create a GUI for The Cloud in the form of a online service by following the WIMP paradigm. It can be thought as a layer between the Browser and The Cloud, as a set of different services rendered as widgets. The difference between Guinet and other Widget Environments (Dashboard, Microsoft Gadgets, etc) is that it is itself a web service and is using the Browser as a Widget Engine Infrastructure.
+
+Note: This implementation should be considered as the minimum viable product and is intended for proof of concept and to demonstrate use cases of certain Design Patterns (MVC, Active Member, Module Pattern, etc).
