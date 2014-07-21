@@ -4,7 +4,7 @@ http://www.guinet.co.uk/
 
 For 30 years WIMP (windows, icons, menus, pointer) has been the prevalent paradigm for HCI (human-computer interaction). From all the "interface metaphors" the Desktop stands in the front line of HCI. It is composed by a set of features like the Start Button, Quick Launch Bar, Notification Area and it is the space where processes in the form of a Window exist. In the last few years with the rise of Cloud Computing, the Desktop GUI has been replaced by the Browser GUI. Each Tab represents a Task, the Address Bar represents the Start Button and the Bookmarks represents the Quick Launch Bar.
 
- I believe though that the Browser's GUI evolved to what it is right now but it has limitations since the shift to The Cloud could not be completely anticipated.
+I believe though that the Browser's GUI evolved to what it is right now but it has limitations since the shift to The Cloud could not be completely anticipated.
 
 Guinet is an attempt to create a GUI for The Cloud in the form of a online service by following the WIMP paradigm. It can be thought as a layer between the Browser and The Cloud, as a set of different services rendered as widgets. The difference between Guinet and other Widget Environments (Dashboard, Microsoft Gadgets, etc) is that it is itself a web service and is using the Browser as a Widget Engine Infrastructure.
 
